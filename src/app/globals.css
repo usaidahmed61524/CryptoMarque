@@ -1,11 +1,11 @@
 body {
   margin: 0px;
   padding: 0px;
-  background-color: #000;
+  background-color: #000 !important;
   overflow-x: hidden;
 }
 
-.container {
+.container-fluid {
   display: flex;
   justify-content: center;
   overflow: hidden;
@@ -24,7 +24,7 @@ body {
 
 .heading-xlarge.xxl {
   color: rgba(252, 10, 84, 0.8);
-  font-size: 5vw;
+  font-size: 7vw;
   line-height: 0.98;
   text-align: center;
 }
@@ -61,7 +61,7 @@ marquee.marquee {
 
 .abcd {
   display: flex;
-  float: right;
+  /* float: right; */
 }
 .text-color-gradient-blue {
   background-image: linear-gradient(129deg, #304352, #d7d2cc);
@@ -82,6 +82,71 @@ marquee.marquee {
   -webkit-animation-play-state: paused;
   animation-play-state: paused;
 }
+.containerBtn {
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  margin-top: 1rem;
+}
+.login-btn {
+  background-color: #121218 !important;
+  color: white !important;
+  padding: 1rem !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  border: none !important;
+}
+
+.login-btn:hover {
+  background-color: #22222a !important;
+  cursor: pointer !important ;
+}
+
+/* For Firefox */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* For Chrome, Safari, and Opera */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* For Internet Explorer and Edge */
+input[type="number"]::-ms-clear {
+  display: none;
+}
+
+.modal-header {
+  border: none !important;
+}
+
+.modal-footer {
+  border: none !important;
+}
+
+.spinner-border {
+  width: 50px;
+  position: fixed;
+  top: 50%;
+  height: 50px;
+  left: 50%;
+  vertical-align: -0.125em;
+  color: #767676 !important;
+}
+
+.swal-button {
+  background-color: #0e0e0e;
+}
+
+.swal-button:hover {
+  background-color: #0e0e0e !important;
+}
+/* introduction  ////////////////////////////////////////////////////*/
 
 @keyframes marquee {
   from {
@@ -89,5 +154,11 @@ marquee.marquee {
   }
   to {
     transform: translateX(0%);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .heading-xlarge.xxl {
+    font-size: 10vw !important;
   }
 }
