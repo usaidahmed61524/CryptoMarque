@@ -97,6 +97,13 @@ marquee.marquee {
   border: none !important;
 }
 
+.modal-body {
+  position: relative;
+  height: 10rem;
+  flex: 1 1 auto;
+  padding: var(--bs-modal-padding);
+}
+
 .login-btn:hover {
   background-color: #22222a !important;
   cursor: pointer !important ;

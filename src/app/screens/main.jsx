@@ -3,15 +3,15 @@
 import { useState } from "react";
 import Items from "../components/items";
 import { useAuth } from "../Authentication";
-import { loginwithDomain } from "../function";
+// import { loginwithDomain } from "../function";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
+import axios from "axios";
 import swal from "sweetalert";
 
 const Main = () => {
   const auth = useAuth();
-  console.log(auth);
   const [show, setShow] = useState(false);
   const [domain, setDomain] = useState("");
   const [tokenId, setTokenId] = useState("");
@@ -19,6 +19,23 @@ const Main = () => {
   const [loading, setLoading] = useState(false);
   const [userName, setUserName] = useState("");
   const [loginBtnVisible, setLoginBtnVisible] = useState(true);
+
+  // loginwithDomain
+
+  const loginwithDomain = async (d, i) => {
+    let useObj;
+    try {
+      const response = await axios.get(`/login?username=${d}&tokenid=${i}`);
+      // console.log(response.data);
+      useObj = response.data;
+      swal("Login", "successfully Login With MMIT Domain:", "success");
+    } catch (error) {
+      swal("Error", "credential are not valid", "error");
+      setLoading(false);
+    }
+
+    return { d, i, useObj };
+  };
 
   const handleClose = () => {
     setShow(false);
@@ -57,11 +74,12 @@ const Main = () => {
 
           setLoginBtnVisible(false);
         } else {
-          console.log("user nai ye");
+          // console.log("user nai ye");
+          swal("Error", "Credential are not valid", "error");
           setLoading(false);
-          swal("Error", "user is not exist", "error");
         }
       }
+      setLoading(false);
     }
     setShow(false);
     setLoading(false);
@@ -237,16 +255,16 @@ const Main = () => {
             )}
           </div>
 
-          <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton>
-              <Modal.Title>Insert Your MMIT Domain</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              {loading ? (
-                <div className="spinner-border" role="status">
-                  <span className="visually-hidden">Loading...</span>
-                </div>
-              ) : (
+          {loading ? (
+            <div className="spinner-border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
+          ) : (
+            <Modal show={show} onHide={handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>Insert Your MMIT Domain</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
                 <Form>
                   <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Control
@@ -257,7 +275,6 @@ const Main = () => {
                         setInputError("");
                       }}
                     />
-                    <p className="text-danger">{inputError}</p>
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -269,18 +286,20 @@ const Main = () => {
                       }}
                     />
                   </Form.Group>
+
+                  <p className="text-danger my-2">{inputError}</p>
                 </Form>
-              )}
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="danger" onClick={handleClose}>
-                Close
-              </Button>
-              <Button variant="dark" onClick={onSubmit}>
-                Login
-              </Button>
-            </Modal.Footer>
-          </Modal>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="danger" onClick={handleClose}>
+                  Close
+                </Button>
+                <Button variant="dark" onClick={onSubmit}>
+                  Login
+                </Button>
+              </Modal.Footer>
+            </Modal>
+          )}
         </div>
       </div>
     </>
