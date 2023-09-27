@@ -15,7 +15,6 @@ const Main = () => {
   const [show, setShow] = useState(false);
   const [domain, setDomain] = useState("");
   const [tokenId, setTokenId] = useState("");
-  const [userData, setUserData] = useState();
   const [inputError, setInputError] = useState("");
   const [loading, setLoading] = useState(false);
   const [userName, setUserName] = useState("");
