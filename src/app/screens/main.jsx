@@ -24,7 +24,9 @@ const Main = () => {
   const loginwithDomain = async (domain, id) => {
     let user;
     try {
-      const response = await axios.get(`/login?username=${domain}&tokenid=${id}`);
+      const response = await axios.get(
+        `/login?username=${domain}&tokenid=${id}`
+      );
       // console.log(response.data);
       user = response.data;
       swal("Login", "Successfully Login With MMIT Domain:", "success");
@@ -41,6 +43,8 @@ const Main = () => {
     setLoading(false);
   };
   const onSubmit = async () => {
+    
+    console.log("domain name", domain);
     if (!domain || !tokenId) {
       swal("Error", "Please fill all the fields", "error");
       // setLoading(false);
@@ -270,7 +274,7 @@ const Main = () => {
                       type="text"
                       placeholder="Domain"
                       onChange={(e) => {
-                        setDomain(e.target.value);
+                        setDomain(e.target.value.toLowerCase());
                         setInputError("");
                       }}
                     />
