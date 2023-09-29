@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { UserToAddressData } from "../Module";
+import { UserToAddressData } from "../Model";
 
 import dbConnect from "../Config";
 
