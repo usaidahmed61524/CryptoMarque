@@ -27,7 +27,6 @@ const Main = () => {
       const response = await axios.get(
         `/login?username=${domain}&tokenid=${id}`
       );
-      // console.log(response.data);
       user = response.data;
       swal("Login", "Successfully Login With MMIT Domain:", "success");
     } catch (error) {
@@ -44,7 +43,6 @@ const Main = () => {
   };
   const onSubmit = async () => {
     
-    console.log("domain name", domain);
     if (!domain || !tokenId) {
       swal("Error", "Please fill all the fields", "error");
       // setLoading(false);
@@ -77,7 +75,6 @@ const Main = () => {
 
           setLoginBtnVisible(false);
         } else {
-          // console.log("user nai ye");
           swal("Error", "Credentials are not valid", "error");
           setLoading(false);
         }
