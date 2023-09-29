@@ -1,14 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import Items from "../components/items";
 import { useAuth } from "../Authentication";
-// import { loginwithDomain } from "../function";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 import swal from "sweetalert";
+import Items from "../components/items";
 
 const Main = () => {
   const auth = useAuth();
@@ -22,19 +21,19 @@ const Main = () => {
 
   // loginwithDomain
 
-  const loginwithDomain = async (d, i) => {
-    let useObj;
+  const loginwithDomain = async (domain, id) => {
+    let user;
     try {
-      const response = await axios.get(`/login?username=${d}&tokenid=${i}`);
+      const response = await axios.get(`/login?username=${domain}&tokenid=${id}`);
       // console.log(response.data);
-      useObj = response.data;
+      user = response.data;
       swal("Login", "successfully Login With MMIT Domain:", "success");
     } catch (error) {
       swal("Error", "credential are not valid", "error");
       setLoading(false);
     }
 
-    return { d, i, useObj };
+    return { domain, id, user };
   };
 
   const handleClose = () => {
@@ -63,7 +62,7 @@ const Main = () => {
           setLoading(false);
         }
 
-        const user = login.useObj;
+        const user = login.user;
         const userValidate = user.success;
         if (userValidate) {
           setLoading(false);
