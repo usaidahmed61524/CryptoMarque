@@ -248,7 +248,7 @@ const Main = () => {
               <>
                 <h5 className="text-light my-4">{userName}</h5>
                 <Button className="login-btn" onClick={logOutUser}>
-                  LogOut
+                  Logout
                 </Button>
               </>
             )}
